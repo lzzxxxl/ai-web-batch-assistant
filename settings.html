@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置 - AI网页批量处理助手</title>
+  <link rel="stylesheet" href="styles/common.css">
+  <style>
+    body { max-width: 800px; margin: 0 auto; padding: 20px; }
+    h1 { margin-bottom: 20px; font-size: 24px; }
+    .settings-section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+    .settings-section h2 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+    .form-group input[type="text"], .form-group input[type="number"], .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group .hint { font-size: 12px; color: #666; margin-top: 5px; }
+    .checkbox-group { display: flex; align-items: center; }
+    .checkbox-group input { margin-right: 8px; }
+    .button-group { margin-top: 20px; text-align: right; }
+    .btn { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h1>设置</h1>
+  <div class="settings-section">
+    <h2>自动化设置</h2>
+    <div class="form-group">
+      <label for="maxWaitTime">最大等待时间（秒）</label>
+      <input type="number" id="maxWaitTime" min="10" max="600" value="120">
+      <div class="hint">等待AI回复的最长时间</div>
+    </div>
+    <div class="form-group">
+      <label for="matchPatterns">标题匹配模式</label>
+      <textarea id="matchPatterns" placeholder="输入自定义匹配模式，每行一个"></textarea>
+      <div class="hint">用于从AI回复中提取标题的匹配模式，支持多种格式</div>
+    </div>
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="markdownConvert" checked>
+      <label for="markdownConvert">启用Markdown转HTML</label>
+    </div>
+  </div>
+  <div class="settings-section">
+    <h2>AI平台</h2>
+    <div class="form-group">
+      <label>支持的平台：</label>
+      <ul style="list-style: disc; padding-left: 20px; margin-top: 10px; color: #666;">
+        <li>ChatGPT (chat.openai.com)</li>
+        <li>DeepSeek (chat.deepseek.com)</li>
+        <li>Claude (claude.ai)</li>
+        <li>Grok (grok.x.ai)</li>
+        <li>Perplexity (perplexity.ai)</li>
+        <li>Coze (coze.com)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="button-group">
+    <button id="resetBtn" class="btn btn-secondary">重置为默认</button>
+    <button id="saveBtn" class="btn btn-primary">保存设置</button>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

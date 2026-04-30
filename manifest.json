@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "AI网页批量处理助手",
+  "description": "批量向AI平台提交问题，自动监控回复并保存为HTML格式",
+  "version": "1.0.0",
+  "permissions": [
+    "storage",
+    "tabs",
+    "sidePanel",
+    "downloads",
+    "offscreen",
+    "activeTab",
+    "scripting",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chat.deepseek.com/*",
+    "https://claude.ai/*",
+    "https://grok.x.ai/*",
+    "https://perplexity.ai/*",
+    "https://coze.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chat.deepseek.com/*",
+        "https://claude.ai/*",
+        "https://grok.x.ai/*",
+        "https://perplexity.ai/*",
+        "https://coze.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles/common.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AI网页批量处理助手"
+  },
+  "options_page": "settings.html"
+}

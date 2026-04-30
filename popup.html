@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI网页批量处理助手</title>
+  <link rel="stylesheet" href="styles/common.css">
+  <style>
+    body {
+      width: 400px;
+      min-height: 300px;
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 8px;
+      background-color: white;
+      border-radius: 6px;
+    }
+    .stat-number {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .task-list {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 16px;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      margin-bottom: 4px;
+      background-color: white;
+      border-radius: 4px;
+    }
+    .task-title {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+    .open-sidebar {
+      width: 100%;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>AI批量助手</h1>
+    <button id="settingsBtn" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">设置</button>
+  </div>
+
+  <div id="statsGrid" class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number" id="totalTasks">0</div>
+      <div class="stat-label">总计</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="completedTasks">0</div>
+      <div class="stat-label">完成</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="pendingTasks">0</div>
+      <div class="stat-label">待处理</div>
+    </div>
+  </div>
+
+  <div id="statusContainer" class="card mb-3">
+    <div class="flex justify-between items-center mb-2">
+      <span id="statusText">准备就绪</span>
+      <span id="statusBadge" class="status-tag status-pending">空闲</span>
+    </div>
+    <div id="progressContainer" class="progress-container" style="display: none;">
+      <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 mb-3">
+    <button id="startBtn" class="btn btn-success flex-1">开始</button>
+    <button id="pauseBtn" class="btn btn-warning flex-1" disabled>暂停</button>
+    <button id="resetBtn" class="btn btn-secondary flex-1">重置</button>
+  </div>
+
+  <div id="taskListContainer" class="card">
+    <div class="flex justify-between items-center mb-2">
+      <strong>任务列表</strong>
+      <button id="addTasksBtn" class="btn btn-primary" style="padding: 4px 8px; font-size: 12px;">添加任务</button>
+    </div>
+    <div id="taskList" class="task-list">
+      <p class="text-gray-500 text-sm">暂无任务，请点击上方添加任务</p>
+    </div>
+  </div>
+
+  <button id="openSidebarBtn" class="btn btn-primary open-sidebar">打开侧边栏</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
